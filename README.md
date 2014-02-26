@@ -1,6 +1,6 @@
 # JpBank
 
-TODO: Write a gem description
+Provide mapping from bank codes to bank information
 
 ## Installation
 
@@ -18,7 +18,15 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
+```ruby
+require 'jp_bank'
+
+bank = JpBank::Bank.find(36)
+bank.name #=> "楽天銀行"
+bank.code #=> "0036"
+```
+
 
 ## Contributing
 
