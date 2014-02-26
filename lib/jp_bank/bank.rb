@@ -5,8 +5,14 @@ module JpBank
       @bank_codes[code]
     end
 
+    def self.fetch_bank_from_name(name)
+      self.load_banks unless @bank_names
+      @bank_names[name]
+    end
+
     def self.find(code_or_name)
-      self.fetch_bank_from_code(code_or_name)
+      self.fetch_bank_from_code(code_or_name) or 
+        self.fetch_bank_from_name(code_or_name)
     end
 
     def initialize(data)
