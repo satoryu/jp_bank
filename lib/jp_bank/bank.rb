@@ -1,7 +1,13 @@
 module JpBank
   class Bank
+    def self.codes
+      self.load_banks unless @bank_codes
+      @bank_codes.keys
+    end
+    
     def self.fetch_bank_from_code(code)
       self.load_banks unless @bank_codes
+      code = '%04d' % code if code.is_a?(Integer)
       @bank_codes[code]
     end
 
@@ -37,7 +43,6 @@ module JpBank
       @bank_codes = {}
       @banks.each do |bank|
         @bank_codes[bank.code] = bank
-        @bank_codes[bank.code.to_i] = bank
       end
       @bank_names = {}
       @banks.each { |bank| @bank_names[bank.name] = bank }

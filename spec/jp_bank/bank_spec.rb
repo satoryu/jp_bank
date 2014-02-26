@@ -32,4 +32,12 @@ describe JpBank::Bank do
 
     end
   end
+
+  describe '.codes' do
+    specify 'returns an array of codes with 4 digits' do
+      JpBank::Bank.codes.each do |code|
+        expect(code).to match(/^\d{4}$/)
+      end
+    end
+  end
 end
