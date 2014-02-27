@@ -1,5 +1,7 @@
 module JpBank
   class Bank
+    class NotFound < StandardError; end
+
     def self.codes
       self.load_banks unless @bank_codes
       @bank_codes.keys
@@ -19,6 +21,12 @@ module JpBank
     def self.find(code_or_name)
       self.fetch_bank_from_code(code_or_name) or 
         self.fetch_bank_from_name(code_or_name)
+    end
+
+    def self.find!(code_or_name)
+      bank = find(code_or_name)
+      raise NotFound if bank.nil?
+      bank
     end
 
     def initialize(data)

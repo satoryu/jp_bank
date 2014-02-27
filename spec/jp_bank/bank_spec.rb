@@ -35,6 +35,23 @@ describe JpBank::Bank do
     end
   end
 
+  describe '.find!' do
+    context 'When given a valid bank code(name)' do
+      let(:bank) { JpBank::Bank.find!('0036') }
+
+      specify 'responds the bank object with the given bank code(name)' do
+        expect(bank).to_not be_nil
+        expect(bank.name).to eq('楽天銀行')
+      end
+    end
+
+    context 'When given an invalid bank code(name)' do
+      specify 'raises error' do
+        expect { JpBank::Bank.find!('invalid code or name') }.to raise_error(JpBank::Bank::NotFound)
+      end
+    end
+  end
+
   describe '.codes' do
     specify 'returns an array of codes with 4 digits' do
       JpBank::Bank.codes.each do |code|
