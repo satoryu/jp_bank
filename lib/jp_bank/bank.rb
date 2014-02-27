@@ -57,7 +57,7 @@ module JpBank
     end
 
     def self.data_file_paths
-      [ File.expand_path('../../data/banks.yml', __FILE__) ]
+      [ File.expand_path('../data/banks.yml', __FILE__) ]
     end
   end
 end
