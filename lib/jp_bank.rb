@@ -13,7 +13,7 @@ module JpBank
 
       self.class_eval do
         define_method attr_name do
-          JpBank::Bank.find(self.send(bank_code_method))
+          JpBank::Bank.fetch_bank_from_code(self.send(bank_code_method))
         end
       end
     end
