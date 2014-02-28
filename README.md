@@ -28,6 +28,24 @@ bank.code #=> "0036"
 ```
 
 
+`JpBank` module provides `jp_bank` class method:
+
+```ruby
+class Account
+  attr_reader :bank_code
+  jp_bank :bank
+
+  def initialize(args)
+    ...
+    @bank_code = args[:bank_code]
+    ...
+  end
+end
+
+account = Account.new(bank_code: '0036')
+account.bank.name #=> '楽天銀行'
+```
+
 ## Contributing
 
 1. Fork it ( http://github.com/<my-github-username>/jp_bank/fork )
