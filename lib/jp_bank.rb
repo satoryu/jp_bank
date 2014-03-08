@@ -2,6 +2,7 @@ require "jp_bank/version"
 
 module JpBank
   autoload :Bank, File.expand_path('../jp_bank/bank', __FILE__)
+  autoload :Validation,  File.expand_path('../jp_bank/validation', __FILE__)
 
   def self.included(base)
     base.extend JpBank::ClassMethods
